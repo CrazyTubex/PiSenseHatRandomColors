@@ -1,0 +1,177 @@
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <script>
+            $( document ).ready(function() {
+                getMatrix();
+            });
+            setInterval(getMatrix(), 6000);
+        </script>
+        <script>
+            function sendRequest(){
+            console.log("uso ovde");
+            var idJson = {
+                id:$("#idofLight").val(),
+		    };
+            $.ajax({
+                
+		        type:"POST",
+		        url:"http://192.168.88.243:3000/zasijaj",
+		        contentType:"application/json",
+		        data:JSON.stringify(idJson),
+		        success:function(data){
+			        console.log(data);
+		    },
+		        error:function(data){
+                    console.log(data);
+                }
+            
+        
+    });
+    
+}
+        </script>
+        <script>
+ 
+            function getMatrix(){
+                $.ajax({
+                type:'GET',
+                url:'http://192.168.88.243:3000/matrica',
+                success:function(data){
+                    matrica = JSON.parse(data)
+                    "matrica[i][0]+","+matrica[i][1]+","+matrica[i][2]+"
+                    for(var i = 0 ; i < 64;i++){
+                        $("#"+i).css("background-color","rgb("+matrica[i][0]+","+ matrica[i][1]+","+matrica[i][2]);
+                        console.log("color","red");
+                        console.log("doso");
+                    }
+                },
+                error:function(data){
+                    console.log(data);
+                }
+            });
+
+            setTimeout(getMatrix, 1000);
+            
+        }
+
+        function randomize(clicked_id){
+            getMatrix();
+            var num = Math.round(0xffffff * Math.random());
+            var r = num >> 16;
+            var g = num >> 8 & 255;
+            var b = num & 255;
+            console.log(r);
+            console.log(g);
+            console.log(b);
+
+
+            console.log("uso ovde");
+            var idJson = {
+                id:clicked_id,
+                r:r,
+                g:g,
+                b:b,
+            };
+            console.log(JSON.stringify(idJson));
+            $.ajax({
+                
+		        type:"POST",
+		        url:"http://192.168.88.243:3000/zasijaj",
+		        contentType:"application/json",
+		        data:JSON.stringify(idJson),
+		        success:function(data){
+			        console.log(data);
+                    
+		    },
+		        error:function(data){
+                    console.log(data);
+                }
+            
+        
+    });
+        }
+ 
+
+        </script>
+    <div>
+        <br>
+        <a href="" class="waves-effect waves-light btn">
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="0">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="1">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="2">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="3">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="4">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="5">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="6">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" val="x" id="7">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="8">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="9">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="10">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="11">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="12">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="13">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="14">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="15">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="16">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="17">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="18">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="19">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="20">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="21">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="22">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="23">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="24">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="25">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="26">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="27">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="28">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="29">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="30">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="31">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="32">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="33">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="34">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="35">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="36">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="37">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="38">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="39">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="40">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="41">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="42">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="43">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="44">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="45">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="46">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="47">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="48">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="49">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="50">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="51">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="52">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="53">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="54">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="55">X</button>
+                <br>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="56">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="57">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="58">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="59">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="60">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="61">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="62">X</button>
+                <button type="button" class="button" onclick="randomize(this.id)" style="height:75px; width: 120px;" id="63">X</button>
+            </a>
+        </div>
+    </body>
+    </body>
+</html>
